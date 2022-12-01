@@ -9,5 +9,5 @@ Route::group(['prefix' => 'v1'], function(){
     Route::apiResource('wishList', WishListController::class);
 });
 
-Route::post('register', [UserController::class, 'register']);
-Route::post('login', [UserController::class, 'login']);
+Route::post('v1/users/register', [UserController::class, 'register']);
+Route::post('v1/users/login', [UserController::class, 'login']);
