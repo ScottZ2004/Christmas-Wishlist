@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreWishlistRequest extends FormRequest
+class StoreUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,9 @@ class StoreWishlistRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'min:1', 'max:30'],
-            'done' => ['boolean']
+            "name" => ["required"],
+            'email' => ['required', 'unique:App\Models\User,email'],
+            "password" => ["required"]
         ];
     }
 }

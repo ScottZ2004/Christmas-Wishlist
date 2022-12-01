@@ -26,7 +26,6 @@ class WishListController extends Controller
 
     public function update(StoreWishlistRequest $request, Wishlist $wishList){
         try{
-            
             $wishlist = Wishlist::find($wishList->id);
             $wishlist->name = $request->input('name');
             $wishlist->done = $request->input('done');
