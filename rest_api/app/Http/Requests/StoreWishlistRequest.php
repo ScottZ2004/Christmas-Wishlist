@@ -25,7 +25,8 @@ class StoreWishlistRequest extends FormRequest
     {
         return [
             'name' => ['required', 'min:1', 'max:30'],
-            'done' => ['boolean']
+            'done' => ['boolean'],
+            'user_id' => ['required', 'integer']
         ];
     }
 }

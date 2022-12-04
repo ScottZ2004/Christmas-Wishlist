@@ -29,10 +29,11 @@ class WishListController extends Controller
             $wishlist = Wishlist::find($wishList->id);
             $wishlist->name = $request->input('name');
             $wishlist->done = $request->input('done');
+            $wishList->user_id = $request->input('user_id');
             $wishlist->save();
         }
         catch(Exception $e){
-            return response()->json("meh");
+            return response()->json("could't send request");
         }
         return response()->json("WishList geupdate");
     }

@@ -17,7 +17,8 @@ class WishListResponse extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'done' => $this->done
+            'done' => $this->done,
+            'user_id' => $this->user_id
         ];
     }
 }

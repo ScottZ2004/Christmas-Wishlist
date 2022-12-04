@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->boolean('done')->default(false);
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
