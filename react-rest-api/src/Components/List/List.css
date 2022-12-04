@@ -1,0 +1,48 @@
+.list{
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    max-height: 23rem;
+    overflow-y: scroll;
+}
+
+.list::-webkit-scrollbar{
+    width: 2rem
+}
+
+.list::-webkit-scrollbar-thumb{
+    background: none;
+    border: black 0.2rem solid;
+    border-radius: 3rem;
+}
+
+.list__item{
+    font-size: 3.2rem;
+    font-weight: 400;
+}
+
+.list__item::marker{
+    font-size: 2rem;
+}
+
+.list__item:hover{
+    text-underline-offset: 0.9rem;
+    text-decoration: underline;
+    text-decoration-thickness: 0.2rem;
+    cursor: pointer;
+}
+
+.list__item--done{
+    font-size: 3.2rem;
+    font-weight: 400;
+    text-decoration: line-through;
+    text-decoration-thickness: 0.2rem;
+}
+
+.list__item--done::marker{
+    font-size: 2rem;
+}
+
+.list__item--done:hover{
+    cursor: pointer;
+}

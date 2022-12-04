@@ -1,4 +1,3 @@
-import React from 'react';
 import './App.css';
 import {Routes, Route} from "react-router-dom";
 import Dashboard from './Components/Dashboard/Dashboard';
@@ -6,7 +5,6 @@ import Login from './Components/Login/Login';
 import SignUp from './Components/SignUp/SignUp';
 
 function App() {
-  const str: string = "gyhvg"
   return (
       <Routes>
         <Route path="/" element={<Dashboard/>}/>

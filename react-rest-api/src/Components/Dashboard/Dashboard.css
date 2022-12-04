@@ -1,9 +1,87 @@
-.background{
+.dashboardContainer{
+    background-image: url("../../Images/Background.png");
     height: 100vh;
-    width: 100vw;
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.background__image{
-    width: 100%;
-    height: 100%;
+.parchment{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
+
+.parchment_img{
+    position: absolute;
+}
+
+.parchment__top{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.parchment__content{
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 47rem;
+}
+
+.parchment__devider{
+    width: 36rem;
+}
+
+.parchment__devider--bottom{
+    width: 36rem;
+    transform: rotate(180deg);
+}
+
+.parchment__title{
+    font-size: 7rem;
+    font-weight: 300;
+}
+
+.parchment__form{
+    display: flex;
+    justify-content: space-between;
+    width: 40rem;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.parchment__input{
+    align-self: flex-start;
+    margin-left: 2rem;
+    border: none;
+    border-bottom: 0.2rem solid black;
+    background: none;
+    font-size: 2.4rem;
+    font-family: wreath, serif;
+    min-width: 5rem;
+}
+
+.parchment__input:focus{
+    outline: none;
+}
+
+.parchment__button{
+    border: 0.2rem black solid;
+    background: none;
+    border-radius: 3rem;
+    padding: 0.5 0.7rem;
+    font-size: 2rem;
+    font-family: wreath, serif;
+}
+
+.parchment__button:hover{
+    cursor: pointer;
+    box-shadow: inset 0 0 0.3rem rgba(0, 0, 0, 0.432);
+}
+
