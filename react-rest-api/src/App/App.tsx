@@ -5,11 +5,11 @@ import Login from '../Components/Login/Login';
 
 function App() {
   return (
-      <Routes>
-        <Route path="/" element={<Dashboard/>}/>
-        <Route path='/login' element={<Login/>} />
-        <Route path='/signup' element={<Login/>}/>
-      </Routes>
+    <Routes>
+      <Route path="/" element={<Dashboard/>}/>
+      <Route path='/login' element={<Login/>} />
+      <Route path='/signup' element={<Login/>}/>
+    </Routes>
   );
 }
 
