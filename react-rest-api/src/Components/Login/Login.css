@@ -1,0 +1,138 @@
+.snow_wrap{
+    height: 100vh;
+    width: 100%;
+    background: url("../../Images/snow\ bg.jpg");
+    background-size: cover;
+    background-position: center bottom;
+    overflow: hidden;
+    position: relative;
+}
+
+.snow, .snow:after, .snow:before{
+    content: "";
+    position: absolute;
+    top: -65rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+    radial-gradient(0.4rem 0.4rem at 10rem 5rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 20rem 15rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 30rem 25rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 40rem 35rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 50rem 10rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 5rem 20rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 15rem 30rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 25rem 40rem, #fff, transparent), 
+    radial-gradient(0.4rem 0.4rem at 35rem 50rem, #fff, transparent);
+    background-size: 65rem 65rem;
+    animation: snowAnim 3s linear;
+    animation-iteration-count: infinite;
+}
+
+.snow:after{
+    margin-left:  -25rem;
+    opacity: 0.5;
+    filter: blur(0.2rem);
+    animation-direction: reverse;
+    animation-duration: 6s;
+}
+
+.snow:before{
+    margin-left:  -35rem;
+    opacity: 0.7;
+    filter: blur(0.1rem);
+    animation-direction: reverse;
+    animation-duration: 3s;
+}
+
+@keyframes snowAnim {
+    from{
+        transform: translateY(0);
+    }
+    to{
+        transform: translateY(65rem);
+    }
+}
+
+.login__backgroundImg{
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 2;
+    background-image: url("../../Images/loginBG.png");
+    background-position: center ;
+    background-size: cover;
+}
+
+.login__parchmentWrapper{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    
+}
+
+.login__parchment{
+    position: absolute;
+    max-height: 60rem;
+    max-width: 52rem;
+}
+
+.login__contentWrapper{
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    max-width: 40rem;
+    max-height: 50rem;
+    min-height: 40rem;
+    gap: 1rem;
+}
+
+.login__header{
+    font-size: 6.5rem;
+    display: flex;
+    align-self: center;
+}
+
+.login__inputWrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.login__label{
+    font-weight: 500;
+    font-size: 3rem;
+}
+
+.login__input{
+    align-self: flex-start;
+    border: none;
+    border-bottom: 0.2rem solid black;
+    background: none;
+    font-size: 2.4rem;
+    font-family: wreath, serif;
+    min-width: 5rem;
+}
+
+.login__input:focus{
+    outline: none;
+}
+
+.login__button{
+    border: 0.2rem black solid;
+    background: none;
+    border-radius: 3rem;
+    padding: 0.5 0.7rem;
+    font-size: 2rem;
+    font-family: wreath, serif;
+}
+
+.login__button:hover{
+    cursor: pointer;
+    box-shadow: inset 0 0 0.3rem rgba(0, 0, 0, 0.432);
+}
