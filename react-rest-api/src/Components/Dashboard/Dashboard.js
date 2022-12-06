@@ -1,8 +1,13 @@
 import List from "../List/List";
 import "./Dashboard.css";
 import {useState, useEffect} from "react";
+import { useParams } from "react-router-dom";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+    
+    useEffect(() => {
+        console.log("user is " + props.user_id)
+    }, [])
     //import images
     const imgUrl = require("../../Images/parchment.png");
     const deviderUrl = require("../../Images/devider.png");
