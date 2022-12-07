@@ -75,7 +75,7 @@ export const WishListProvider = ({children}) => {
     // states and functions for wishlist
     
     const [list, setList] = useState([]);
-
+    const [inputValue, setInputValue] = useState("");
     const getList = async () => {
         const response = await axios.get('/wishList');
         setList(response.data.data);
@@ -95,6 +95,26 @@ export const WishListProvider = ({children}) => {
         getList();
     }
 
+    const onInputChange = (e) => {
+        setInputValue(e.target.value);
+    }
+
+    const addItem = async (e) => {
+        e.preventDefault();
+        const itemsToBeSend = {
+            name: inputValue,
+            user_id: user.id
+        }
+        try{
+            await axios.post('/wishList', itemsToBeSend);
+        }
+        catch(e){
+            console.log("couldn't send");
+        }
+        getList();
+        setInputValue("");
+    }
+
     return <WishListContext.Provider value={{
         onSignUpChange,
         errors,
@@ -106,6 +126,9 @@ export const WishListProvider = ({children}) => {
         setList,
         getList,
         setDone,
+        onInputChange,
+        addItem,
+        inputValue
     }}>{children}</WishListContext.Provider>
 }
 

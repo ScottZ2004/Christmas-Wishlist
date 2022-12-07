@@ -1,9 +1,12 @@
 import "./List.css";
 import WishListContext from "../../Context/WishListContext";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 
 export default function List(props) {
-  const {user, list, setDone} = useContext(WishListContext);
+  const {user, list, setDone, getList} = useContext(WishListContext);
+  useEffect(() => {
+    getList()
+  }, [])
   const listItems = list.map(item => {
     if(user.id === item.user_id){
       let className = "list__item";
