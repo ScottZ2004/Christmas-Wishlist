@@ -4,40 +4,17 @@ import {useState, useEffect, useContext} from "react";
 import WishListContext from "../../Context/WishListContext";
 
 const Dashboard = () => {
-    const {user} = useContext(WishListContext);
-    useEffect(() => {
-        console.log(user.id)
-    }, [])
+    const {user, list, getList} = useContext(WishListContext);
+    
     //import images
     const imgUrl = require("../../Images/parchment.png");
     const deviderUrl = require("../../Images/devider.png");
 
     //states
-    const [list, setList] = useState([]);
+    
 
     useEffect(() => {
-        setList([
-        {   
-            id: 1,
-            name: "car",
-            done: false,
-        },
-        {   
-            id: 2,
-            name: "fiest",
-            done: true,
-        },
-        {   
-            id: 3,
-            name: "car",
-            done: false,
-        },
-        {   
-            id: 4,
-            name: "fiest",
-            done: true,
-        },
-    ]);
+        getList();
     }, []);
 
     return(

@@ -7,7 +7,7 @@ const WishListContext = createContext();
 
 export const WishListProvider = ({children}) => {
     const navigate = useNavigate();
-    
+    // login page states and functions
     const [signUpValues, setSignUpValues] = useState({
         name: "",
         email: "",
@@ -71,7 +71,27 @@ export const WishListProvider = ({children}) => {
             }
         }
     }
-    return <WishListContext.Provider value={{onSignUpChange, errors, onLoginChange, logIn, user, signUp}}>{children}</WishListContext.Provider>
+
+    // states and functions for wishlist
+    
+    const [list, setList] = useState([]);
+
+    const getList = async () => {
+        const response = await axios.get('/wishList');
+        setList(response.data.data);
+    }
+
+    return <WishListContext.Provider value={{
+        onSignUpChange,
+        errors,
+        onLoginChange,
+        logIn,
+        user,
+        signUp,
+        list,
+        setList,
+        getList,
+    }}>{children}</WishListContext.Provider>
 }
 
 export default WishListContext;
