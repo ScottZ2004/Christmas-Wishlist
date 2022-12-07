@@ -1,12 +1,12 @@
 import List from "../List/List";
 import "./Dashboard.css";
-import {useState, useEffect} from "react";
-import { useParams } from "react-router-dom";
+import {useState, useEffect, useContext} from "react";
+import WishListContext from "../../Context/WishListContext";
 
-const Dashboard = (props) => {
-    
+const Dashboard = () => {
+    const {user} = useContext(WishListContext);
     useEffect(() => {
-        console.log("user is " + props.user_id)
+        console.log(user.id)
     }, [])
     //import images
     const imgUrl = require("../../Images/parchment.png");
@@ -57,8 +57,6 @@ const Dashboard = (props) => {
                     <img className="parchment__devider--bottom" src={deviderUrl} alt="devider" />
                 </div>
            </div>
-
-
         </section>
     )
 }

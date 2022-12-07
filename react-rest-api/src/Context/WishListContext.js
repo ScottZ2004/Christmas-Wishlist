@@ -20,7 +20,7 @@ export const WishListProvider = ({children}) => {
     const [errors, setErrors] = useState({});
     const [user, setUser] = useState({
         isLoggedIn: false,
-        user_id: null
+        id: null
     });
 
     const onSignUpChange = (e) => {
@@ -37,41 +37,41 @@ export const WishListProvider = ({children}) => {
         })
     }
 
-    
-      
-      const logIn = async(info) => {
-        info.preventDefault();
+    const logIn = async(e) => {
+        e.preventDefault();
         try{
-          const response = await axios.post('users/login', info);
-          setUser({
-            isLoggedIn: true,
-            user_id: response.data.id
-          });
-          navigate("/")
-        }
-        catch(e){
-          if(e.response.status === 422){
-            setErrors(e.response.data.errors);
+            const response = await axios.post('users/login', logInValues);
+            setUser({
+                isLoggedIn: true,
+                id: response.data.id
+            });
+
+            if(response.data.id !== undefined){
+                navigate("/");
+            }
+            else{
+                setErrors({
+                    error: response.data.error
+                })
             }
         }
-        
-      }
+        catch(e){
+            
+        }
+    }
 
     const signUp = async(e) => {
         e.preventDefault();
         try{
             await axios.post('users/register', signUpValues);
-            const infoToBePassed = {
-                email: signUpValues.email,
-                password: signUpValues.password
-            }
+            navigate('/login');
         } catch(e){
             if(e.response.status === 422){
                 setErrors(e.response.data.errors);
             }
         }
     }
-    return <WishListContext.Provider value={{onSignUpChange, errors, onLoginChange}}>{children}</WishListContext.Provider>
+    return <WishListContext.Provider value={{onSignUpChange, errors, onLoginChange, logIn, user, signUp}}>{children}</WishListContext.Provider>
 }
 
 export default WishListContext;

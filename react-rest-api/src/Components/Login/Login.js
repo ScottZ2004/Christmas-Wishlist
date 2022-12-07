@@ -4,7 +4,7 @@ import WishListContext from "../../Context/WishListContext";
 
 const Login = () => {
     const bgImg_url = require("../../Images/parchment_login.png");
-    const {onSignUpChange, errors, onLoginChange} = useContext(WishListContext);
+    const {onSignUpChange, errors, onLoginChange, logIn, signUp} = useContext(WishListContext);
   
     if(window.location.pathname === "/login"){
         return(
@@ -14,7 +14,7 @@ const Login = () => {
                 <div className="login__backgroundImg">
                     <div className="login__parchmentWrapper">
                         <img className="login__parchment" src={bgImg_url} alt="" />
-                        <form className="login__contentWrapper">
+                        <form onSubmit={logIn} className="login__contentWrapper">
                             <h1 className="login__header">Login</h1>
                             <div className="login__inputWrapper">
                                 <label className="login__label" htmlFor="email">Email</label>
@@ -24,8 +24,8 @@ const Login = () => {
                                 <label className="login__label" htmlFor="password">Password</label>
                                 <input onChange={onLoginChange} id="password" className="login__input" type="password" />
                             </div>  
-                            
-                            <button className="login__button" type="submit">Submit</button>
+                            {<span className="login__error">{errors.error}</span>}
+                            <button className="login__button" type="submit">Log in</button>
                         </form>
                     </div>
                 </div>
@@ -39,7 +39,7 @@ const Login = () => {
                 <div className="login__backgroundImg">
                     <div className="login__parchmentWrapper">
                         <img className="login__parchment" src={bgImg_url} alt="" />
-                        <form className="login__contentWrapper">
+                        <form onSubmit={signUp} className="login__contentWrapper">
                             <h1 className="login__header">Signup</h1>
                             <div className="login__inputWrapper">
                                 <label className="login__label" htmlFor="name">Name</label>
@@ -56,7 +56,7 @@ const Login = () => {
                                 <input onChange={onSignUpChange} id="password" className="login__input" type="password" />
                             </div>  
                             {errors.password && <span className="login__error">{errors.password[0]}</span>}
-                            <button className="login__button" type="submit">Submit</button>
+                            <button className="login__button" type="submit">Sign in</button>
                         </form>
                     </div>
                 </div>
