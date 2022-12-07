@@ -1,6 +1,7 @@
 import "./Login.css";
 import { useEffect, useContext } from "react";
 import WishListContext from "../../Context/WishListContext";
+import { Link } from "react-router-dom";
 
 const Login = () => {
     const bgImg_url = require("../../Images/parchment_login.png");
@@ -26,6 +27,7 @@ const Login = () => {
                             </div>  
                             {<span className="login__error">{errors.error}</span>}
                             <button className="login__button" type="submit">Log in</button>
+                        <Link className="login__link" to='/signup'>I don't have an account</Link>
                         </form>
                     </div>
                 </div>
@@ -57,6 +59,7 @@ const Login = () => {
                             </div>  
                             {errors.password && <span className="login__error">{errors.password[0]}</span>}
                             <button className="login__button" type="submit">Sign in</button>
+                            <Link className="login__link" to="/login">I already have an account</Link>
                         </form>
                     </div>
                 </div>

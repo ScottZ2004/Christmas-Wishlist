@@ -1,11 +1,17 @@
 import List from "../List/List";
 import "./Dashboard.css";
-import {useState, useEffect, useContext, inputValue} from "react";
+import {useEffect, useContext} from "react";
 import WishListContext from "../../Context/WishListContext";
+import {useNavigate, usenNavigate} from "react-router-dom"
 
 const Dashboard = () => {
-    const {onInputChange, addItem, inputValue} = useContext(WishListContext);
-    
+    const {user, onInputChange, addItem, inputValue} = useContext(WishListContext);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(!user.isLoggedIn){
+            navigate('/login');
+        }
+    }, [])
     //import images
     const imgUrl = require("../../Images/parchment.png");
     const deviderUrl = require("../../Images/devider.png");
