@@ -24,16 +24,14 @@ class WishListController extends Controller
         return response()->json("Wishlist Created");
     }
 
-    public function update(StoreWishlistRequest $request, Wishlist $wishList){
+    public function update(Request $request, Wishlist $wishList){
         try{
             $wishlist = Wishlist::find($wishList->id);
-            $wishlist->name = $request->input('name');
             $wishlist->done = $request->input('done');
-            $wishList->user_id = $request->input('user_id');
             $wishlist->save();
         }
         catch(Exception $e){
-            return response()->json("could't send request");
+            return response()->json("couldn't send request");
         }
         return response()->json("WishList geupdate");
     }

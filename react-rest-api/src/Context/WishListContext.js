@@ -81,6 +81,20 @@ export const WishListProvider = ({children}) => {
         setList(response.data.data);
     }
 
+    const setDone = async (e) => {
+        const targetItem = list[e.target.id - 1];
+        const itemToBeSend = {
+            done: !targetItem.done
+        }
+        try{
+            await axios.put('/wishList/' + e.target.id, itemToBeSend)
+        }
+        catch{
+            console.log("couldn't update");
+        }
+        getList();
+    }
+
     return <WishListContext.Provider value={{
         onSignUpChange,
         errors,
@@ -91,6 +105,7 @@ export const WishListProvider = ({children}) => {
         list,
         setList,
         getList,
+        setDone,
     }}>{children}</WishListContext.Provider>
 }
 

@@ -11,8 +11,6 @@ const Dashboard = () => {
     const deviderUrl = require("../../Images/devider.png");
 
     //states
-    
-
     useEffect(() => {
         getList();
     }, []);
