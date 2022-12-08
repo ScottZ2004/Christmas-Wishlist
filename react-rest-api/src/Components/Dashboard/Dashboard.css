@@ -78,6 +78,7 @@
     padding: 0.5 0.7rem;
     font-size: 2rem;
     font-family: wreath, serif;
+    transition: 0.2s;
 }
 
 .parchment__button:hover{

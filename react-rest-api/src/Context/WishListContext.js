@@ -73,9 +73,14 @@ export const WishListProvider = ({children}) => {
     }
 
     // states and functions for wishlist
-    
     const [list, setList] = useState([]);
     const [inputValue, setInputValue] = useState("");
+    const [editMode, setEditMode] = useState({
+        isOn: false,
+        id: null
+    });
+    const [editModeInputValues, setEditModeInputValues] = useState("")
+
     const getList = async () => {
         const response = await axios.get('/wishList');
         setList(response.data.data);
@@ -84,6 +89,7 @@ export const WishListProvider = ({children}) => {
     const setDone = async (e) => {
         const targetItem = list[e.target.id - 1];
         const itemToBeSend = {
+            name: targetItem.name,
             done: !targetItem.done
         }
         try{
@@ -115,6 +121,55 @@ export const WishListProvider = ({children}) => {
         setInputValue("");
     }
 
+    const getSelectedItem = (id) => {
+        
+    }
+
+    const toggleEditMode = (e) => {
+        setEditMode({
+            isOn: !editMode.isOn,
+            id: e.target.id
+        });
+        const selectedItem = list.filter(item => {
+            if(item.id == e.target.id){
+                return item
+            }
+        });
+        setEditModeInputValues(selectedItem[0].name)
+    }
+
+    const onChangeEditMode = (e) => {
+        setEditModeInputValues(e.target.value)
+    }
+
+    const saveItem = async() => {
+        const selectedItem = list.filter(item => {
+            if(item.id == editMode.id){
+                return item
+            }
+        });
+        const itemsToBePassed = {
+            name: editModeInputValues,
+            done: selectedItem[0].done
+        }
+        console.log( selectedItem[0].done)
+        try{
+            await axios.put('wishList/' + editMode.id, itemsToBePassed);
+            getList();
+        }catch(e){
+            if(e.response.status === 422){
+                console.log(e)
+            }
+        }
+        
+        setEditMode({
+            isOn: !editMode.isOn,
+            id: null
+        });
+        setEditModeInputValues("");
+        
+    }
+
     return <WishListContext.Provider value={{
         onSignUpChange,
         errors,
@@ -128,7 +183,13 @@ export const WishListProvider = ({children}) => {
         setDone,
         onInputChange,
         addItem,
-        inputValue
+        inputValue,
+        toggleEditMode,
+        editMode,
+        saveItem,
+        onChangeEditMode,
+        editModeInputValues
+
     }}>{children}</WishListContext.Provider>
 }
 
