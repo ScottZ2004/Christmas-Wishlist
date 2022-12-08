@@ -142,7 +142,8 @@ export const WishListProvider = ({children}) => {
         setEditModeInputValues(e.target.value)
     }
 
-    const saveItem = async() => {
+    const saveItem = async(e) => {
+        e.preventDefault()
         const selectedItem = list.filter(item => {
             if(item.id == editMode.id){
                 return item
@@ -152,7 +153,6 @@ export const WishListProvider = ({children}) => {
             name: editModeInputValues,
             done: selectedItem[0].done
         }
-        console.log( selectedItem[0].done)
         try{
             await axios.put('wishList/' + editMode.id, itemsToBePassed);
             getList();
@@ -168,6 +168,15 @@ export const WishListProvider = ({children}) => {
         });
         setEditModeInputValues("");
         
+    }
+
+    const deleteItem = async() => {
+        await axios.delete("wishList/" + editMode.id)
+        setEditMode({
+            isOn: false,
+            id: null
+        })
+        getList();
     }
 
     return <WishListContext.Provider value={{
@@ -188,7 +197,8 @@ export const WishListProvider = ({children}) => {
         editMode,
         saveItem,
         onChangeEditMode,
-        editModeInputValues
+        editModeInputValues,
+        deleteItem
 
     }}>{children}</WishListContext.Provider>
 }

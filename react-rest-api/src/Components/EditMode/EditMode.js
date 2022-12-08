@@ -3,7 +3,7 @@ import WishListContext from "../../Context/WishListContext";
 import {useContext, useEffect} from "react"
 
 const EditMode = () => {
-    const {list, editMode, saveItem, onChangeEditMode} = useContext(WishListContext);
+    const {list, editMode, saveItem, onChangeEditMode, deleteItem} = useContext(WishListContext);
 
     // useEffect(()=>{
     //     onChangeEditMode()
@@ -17,15 +17,14 @@ const EditMode = () => {
     })
     return(
         <section className="editmode">
-            <h2>Edit item</h2>
             <div className="editmode__buttons">
-                <button onClick={saveItem}>Save</button>
-                <button>Delete</button>
+                <button className="editmode__button"  onClick={saveItem}>Save</button>
+                <button className="editmode__button"  onClick={deleteItem}>Delete</button>
             </div>
-            <div className="editmode__inputWrapper">
+            <form onSubmit={saveItem} className="editmode__inputWrapper">
                 <label className="editMode__label" htmlFor="input">Item name</label>
-                <input onChange={onChangeEditMode} className="editMode__input" type="text" name="input" defaultValue={item.name} id="input" />
-            </div>
+                <input onChange={onChangeEditMode} className="editmode__input" type="text" name="input" defaultValue={item.name} id="input" />
+            </form>
         </section>
     )
 } 
