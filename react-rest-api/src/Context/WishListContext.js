@@ -1,7 +1,7 @@
 import {createContext, useState} from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/";
+axios.defaults.baseURL = "https://wishlist.scottzico.com/api/v1/";
 
 const WishListContext = createContext();
 
@@ -87,10 +87,15 @@ export const WishListProvider = ({children}) => {
     }
 
     const setDone = async (e) => {
-        const targetItem = list[e.target.id - 1];
+        const targetItem = list.filter(item => {
+            if(e.target.id == item.id){
+                return item
+            }
+        });
+        console.log(targetItem[0])
         const itemToBeSend = {
-            name: targetItem.name,
-            done: !targetItem.done
+            name: targetItem[0].name,
+            done: !targetItem[0].done
         }
         try{
             await axios.put('/wishList/' + e.target.id, itemToBeSend)
@@ -119,10 +124,6 @@ export const WishListProvider = ({children}) => {
         }
         getList();
         setInputValue("");
-    }
-
-    const getSelectedItem = (id) => {
-        
     }
 
     const toggleEditMode = (e) => {

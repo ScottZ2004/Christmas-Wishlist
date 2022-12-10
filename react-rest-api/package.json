@@ -1,5 +1,6 @@
 {
   "name": "react-rest-api",
+  "homepage": "http://christmas-wishlist.scottzico.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
